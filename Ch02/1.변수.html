@@ -17,6 +17,9 @@
 
         // var는 ES6에서 사용 안함
         // -> 호이스팅 관련 문제로 잘 안씀
+        // 호이스팅 : script 범위 내에 전체적으로 사용되기 때문에 최상위로 올라가 버리는 현상
+        // 심지어 지역변수내에서 var로 선언해도 전역변수마냥 해당 변수를 사용 할 수 있음
+        // js은 인터프리터 언어라 맨 위에서 출력이 됨(아래 쪽에 var를 선언해놓고 위에서 var로 선언한 변수를 사용하면 위에서는 위에서 사용한 그 값을 가지고 사용됨)
         var value1 = 1;
         var value2 = 3.14;
 
@@ -29,14 +32,21 @@
         let var5 = 'hello';
         let var6 = null;
         // undefined는 값이 없다는 거임
+        // -> 변수는 선언되었지만 값이 아직 할당 되지 않은거
+        // or 함수 반환 값이 없는 경우
+        // null) 값이 없음을 명시적으로 나타냄
+        // => undefined는 js엔진에 의해 자동으로 할당 | 자료형 undefined
+        // null은 개발자가 의도적으로 할당한 값 | 자료형 object
         let var7 = undefined;
         let var8;
 
         // const는 상수 선언 키워드
         // js는 상수를 대문자로 표기 잘 안함
-        const num1 = 1;
-        const num2 = 2.1;
+        // 근데 아무리봐도 상수는 대문자가 맞는듯
+        const NUM1 = 1;
+        const NUM2 = 2.1;
 
+        // typeof : 변수의 데이터 타입을 출력
         document.write('<p>');
         document.write('value1 : ' + value1 + typeof value1 + '<br>');
         document.write('value2 : ' + value2 + typeof value2 + '<br>');
@@ -48,8 +58,8 @@
         document.write('var6 : ' + var6 + typeof var6 + '<br>');
         document.write('var7 : ' + var7 + typeof var7 + '<br>');
         document.write('var8 : ' + var8 + typeof var8 + '<br>');
-        document.write('num1 : ' + num1 + typeof num1 + '<br>');
-        document.write('num2 : ' + num2 + typeof num2 + '<br>');
+        document.write('NUM1 : ' + NUM1 + typeof NUM1 + '<br>');
+        document.write('NUM2 : ' + NUM2 + typeof NUM2 + '<br>');
 
         document.write('</p>');
 
