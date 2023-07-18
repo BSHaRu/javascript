@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>1. 배열</title>
+    <!-- 
+        날짜 : 2023.07.18
+        내용 : js 배열 실습
+     -->
+</head>
+<body>
+    <h3>1. 배열</h3>
+
+    <script>
+        // 배열 생성
+        // js는 참조 변수일 경우 상수로 많이 씀
+        const arr = [1, 2, 3, 4, 5];
+
+        // 출력
+        for(let i = 0; i < arr.length; i++){
+            console.log(`arr[${i}] : ${arr[i]} <br/>`);
+        }
+
+        // 배열 반복문 ver1 - 인덱스 참조
+        for(let i in arr){
+            document.write(`arr[${i}] : ${arr[i]} <br/>`);
+        }
+
+        document.write('<hr/>');
+
+        // 배열 반복문 ver2 - 원소 참조
+        for(let n of arr){
+            document.write(n + '<br/>');
+        }
+
+        document.write('<hr/>');
+
+        // 2차원 배열
+        const arr2 =[[1, 2, 3],
+                    [4, 5, 6],
+                    [7, 8, 9]
+        ];
+        document.write(`arr2[0][0] : ${arr2[0][0]} <br/>`);
+        document.write(`arr2[1][1] : ${arr2[1][1]} <br/>`);
+        document.write(`arr2[2][1] : ${arr2[2][1]} <br/>`);
+        
+        document.write('<hr/>');
+
+        // 3차원 배열
+        const arr3 = [ [ [1, 2, 3],
+                    [4, 5, 6],
+                    [7, 8, 9] ],
+
+                    [ [10, 11, 12],
+                    [13, 14, 15],
+                    [16, 17, 18] ],
+
+                    [ [19, 20, 21], 
+                    [22, 23, 24], 
+                    [25, 26, 27] ] ];
+
+        document.write(`arr3[0][0][2] : ${arr3[0][0][2]} <br/>`);
+        document.write(`arr3[2][0][0] : ${arr3[2][0][0]} <br/>`);
+        document.write(`arr3[1][0][0] : ${arr3[1][0][0]} <br/>`);
+        document.write(`arr3[1][2][2] : ${arr3[1][2][2]} <br/>`);
+        document.write(`arr3[2][0][2] : ${arr3[2][0][2]} <br/>`);
+        document.write(`arr3[2][2][2] : ${arr3[2][2][2]} <br/>`);
+
+        document.write('<hr/>');
+
+    </script>
+</body>
+</html>
