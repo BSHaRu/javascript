@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>2. JSON(Javascript Object Notation)</title>
+</head>
+<body>
+    <h3>2. JSON</h3>
+    <script>
+        // JSON 객체
+        // key : value를 가진 객체
+        let user = {
+            "uid" : "a101",
+            "name" : "김유신",
+            "hp" : "010-1234-1111",
+            "age" : 25
+        };
+
+        document.write(`user : ${user} <br/>`);
+        document.write(`아이디 : ${user.uid} <br/>`);
+        document.write(`이름 : ${user.name} <br/>`);
+        document.write(`연락처 : ${user.hp} <br/>`);
+        document.write(`나이 : ${user.age} <br/> <hr/>`);
+
+        // key를 통해서 index를 참조 할 수 있다.
+        for(let k in user){
+            document.write(`${k} : ${user[k]} <br/>`);
+        }
+        document.write("<br/> <hr/><hr/>");
+
+        // JSON 객체 배열
+        let jsonData = {
+            "users" : [
+                { "uid" : "a102", 
+                "name" : "강감찬", 
+                "hp" : "010-1234-2222", 
+                "age" : 27 }, 
+
+                { "uid" : "a103", 
+                "name" : "장보고", 
+                "hp" : "010-1234-3333", 
+                "age" : 21 }, 
+
+                { "uid" : "a104", 
+                "name" : "홍길동", 
+                "hp" : "010-1234-4444", 
+                "age" : 29 }, 
+
+                { "uid" : "a105", 
+                "name" : "이순신", 
+                "hp" : "010-1234-5555", 
+                "age" : 23 }, 
+                
+                { "uid" : "a106", 
+                "name" : "고길동", 
+                "hp" : "010-1234-6666", 
+                "age" : 41 } 
+            ]};
+
+        for(let user of jsonData.users){
+            document.write("<p>");
+            document.write(`uid : ${user.uid} <br/>`);
+            document.write(`name : ${user.name} <br/>`);
+            document.write(`hp : ${user.hp} <br/>`);
+            document.write(`age : ${user.age} <br/> <hr/>`);
+            document.write("</p>");
+        }
+        document.write("<br/> <hr/><hr/>")
+
+        // JSON 함수
+        let user1 = {
+            "name" : "김유신",
+            "age" : 22,
+            "addr" : "부산"
+        };
+        // JSON 객체를 문자열로 변환
+        let strUser1 = JSON.stringify(user1);
+
+        document.write(`user1 : ${user1} <br/>`);
+        document.write(`strUser1 : ${strUser1} <br/> <hr/>`);
+
+        // JSON 문자열을 객체로 변환
+        let user2 = JSON.parse(strUser1);
+        document.write(`user2 : ${user2} <br/>`)
+        document.write(`user2.name : ${user2.name} <br/>`)
+        document.write(`user2.age : ${user2.age} <br/>`)
+        document.write(`user2.addr : ${user2.addr} <br/>`)
+
+    </script>
+
+</body>
+</html>
