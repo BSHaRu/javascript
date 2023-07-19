@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>3. 내장객체</title>
+</head>
+<body>
+    <h3>3. 내장객체</h3>
+
+    <h4>Array</h4>
+    <script>
+        let arr1 = [1, 2, 3, 4, 5];
+        let arr2 = new Array(6, 7, 8 ,9, 10);
+        let arr3 = arr1.concat(arr2);
+        let result = arr3.join("-");
+        
+        document.write(`arr1 : ${arr1} <br />`);
+        document.write(`arr2 : ${arr2} <br />`);       
+        document.write(`arr3 : ${arr3} <br />`);        
+        document.write(`result : ${result} <br />`);
+        arr1.push(6);
+        arr1.push(7);
+        arr1.push(8);
+        document.write(`arr1 : ${arr1} <br /> <hr />`);
+
+        // 배열 반복문(forEach문 2개 동일한 거임)
+        arr3.forEach(function(item, index){
+            document.write(`index : ${index}, itme : ${item} <br / >`);
+        });
+        document.write(`<hr />`);
+        arr3.forEach((item, index) => {
+            document.write(`index : ${index}, itme : ${item} <br / >`);
+        });
+
+        document.write(`<hr />`);
+
+        // 배열 원소 가공
+        let arr4 = arr3.map((item)=>{
+                            return item + 10;
+                        });
+        document.write(`arr4 : ${arr4} <br />`);
+
+        let arr5 = arr3.map(item => item * 2);
+        document.write(`arr5 : ${arr5} <br />`);
+
+        // return true가 되어야 filter가 됨
+        let arr6 = arr3.filter(item => item % 2 == 0);
+        document.write(`arr6 : ${arr6} <br />`);
+
+        // arr3의 item값을 2배 하는데, 그 값이 10이상인값만 출력
+        let arr7 = arr3.map(item => item * 2)
+                        .filter(item => item >= 10);
+        document.write(`arr7 : ${arr7} <br /> <hr />`);
+
+        // 배열 구조 분해 할당
+        let [spring, summer, fall, winter] = ["봄", "여름", "가을", "겨울"];
+        document.write(`spring : ${spring} <br />`);
+        document.write(`summer : ${summer} <br />`);
+        document.write(`fall : ${fall} <br />`);
+        document.write(`winter : ${winter} <br /> <hr />`);
+
+        let [leader, ...others] = ["김유신", "장보고", "이순신", "홍길동"];
+        document.write(`leader : ${leader} <br />`);
+        document.write(`others : ${others} <br /><hr />`);
+    </script>
+
+    
+    <h4>String</h4>
+    <script>
+        let str1 = "Hello Korea";
+        let str2 = new String("Hello Korea");
+
+        let r1 = str1.length;
+        let r2 = str1.charAt(0); // index 0번의 값
+        let r3 = str1.indexOf("e"); // e의 index 번호
+        // 맨 뒤에 있는 e의 index 번호
+        let r4 = str1.lastIndexOf("e");
+        
+        let r5 = str2.replace("Korea", "Busan");
+        let r6 = str2.substring(0, 5);
+        let r7 = str2.substr(0, 5);
+        /* substring vs substr
+            - substring : 시작 index와 끝 index는 모두 양수
+                음수일 경우 0으로 처리
+                끝 index > 시작 index
+            - substr : 시작 index, 문자열 길이
+                시작 index가 음수일 경우 역으로 계산 
+        */
+
+        document.write(`r1 : ${r1} <br/>`);
+        document.write(`r2 : ${r2} <br/>`);
+        document.write(`r3 : ${r3} <br/>`);
+        document.write(`r4 : ${r4} <br/>`);
+
+        document.write(`r5 : ${r5} <br/>`);
+        document.write(`r6 : ${r6} <br/>`);
+        document.write(`r7 : ${r7} <br/>`);
+
+        let str3 = " ab cd ef ";
+        // trim() : 앞 뒤의 공백 제거
+        let r8 = str3.trim();
+        document.write(`r8 : ${r8}<br/>`);
+
+        let str4 = "서울, 대전, 대구, 부산, 광주";
+        let r9 = str4.split(",");
+        // split으로 잘랐기 때문에 배열로 나옴
+        document.write(`r9 : ${r9} <br/>`);
+        document.write(`r9[3] : ${r9[3]} <br/><hr/>`);
+    </script>
+
+    <h4>Math</h4>
+    <script>
+        let rs1 = Math.abs(-5); // 절대값
+        let rs2 = Math.sqrt(9); // 제곱근
+        let rs3 = Math.round(1.2); // 반올림
+        let rs4 = Math.round(1.8);
+
+        document.write(`abs 절대값 : ${rs1} <br/>`);
+        document.write(`sqrt 제곱근 : ${rs2} <br/>`);
+        document.write(`round 반올림 : ${rs3} <br/>`);
+        document.write(`round 반올림 : ${rs4} <br/><hr/>`);
+
+
+    </script>
+
+    <h4>Date</h4>
+    <script>
+        let date = new Date();
+        document.write(`date : ${date} <br/>`);
+
+        let year  = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day   = date.getDate();
+        let hour  = date.getHours();
+        let min   = date.getMinutes();
+        let sec   = date.getSeconds();
+        document.write(`${year}년 ${month}월 ${day}일 ${hour}시 ${min}분 ${sec}초`);
+    </script>
+
+</body>
+</html>

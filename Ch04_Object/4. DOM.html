@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>4. DOM(Document Object Model)</title>
+
+</head>
+<body>
+    <h3>4.DOM </h3>
+    
+    <h4>문서(HTML)객체 선택</h4>
+    <ul>
+        <li id="seoul">
+            <span>서울</span>
+            <ol>
+                <li><i>명동</i></li>
+                <li><i>종로</i></li>
+                <li><i>홍대</i></li>
+                <li><i>이태원</i></li>
+            </ol>
+        </li>
+        <li>대전</li>
+        <li id="daegu">대구</li>
+        <li>
+            <span>부산</span>
+            <ol>
+                <li class="busan">서면</li>
+                <li class="busan">경대</li>
+                <li class="busan">해운대</li>
+            </ol>
+        </li>
+        <li>광주</li>
+    </ul>
+
+    <script>
+        /* 단일 선택자
+            - querySelector : css 선택자를 이용하여 가장 먼저 검색되는 한개의 요소를 가지고 옴
+
+            - getElementById : id값으로 요소를 검색하여 제일 먼저 검색된 한개의 요소를 가지고 옴.
+        */
+        let h3 = document.querySelector("h3");
+        h3.style.color = "#8972ee";
+        
+        let span = document.querySelector("span");
+        span.style.color = "red";
+
+        let busan = document.querySelector("ul > li:nth-child(4) > span");
+        busan.style.color = "blue";
+
+        let daegu = document.getElementById("daegu");
+        daegu.style.color = "orange";
+
+        /*  다수 선택자 : 배열로 정리 -> return값이 배열임
+            - querySelectorAll : css 다수의 동일한 선택자를 불러올때 사용 
+            - getElementsByTagName : name은 보통 1페이지에 1개 밖에 안씀
+            - getElementsByClassName : 디자인 하는 애들이 이걸 많이씀
+        */
+
+        let selectorAll = document.querySelectorAll("li");
+        // 서울 안에도 li가 있기 때문에 
+        // 대전을 선택 할 꺼면 index 5번째로 접근해야함
+        selectorAll[5].style.color = "yellowgreen";
+
+        let tagArray = document.getElementsByTagName("i");
+        for(let city of tagArray) {
+            city.style.color = "pink";
+        };
+
+        let classArray = document.getElementsByClassName("busan");
+        for(let city of classArray){
+            city.style.color = "#4ee41a";
+        }
+
+    </script>
+
+
+</body>
+</html>

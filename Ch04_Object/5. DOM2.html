@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>5. DOM(Document Object Model)</title>
+    <style>
+        .box{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        .red {background-color: red;}
+        .blue {background-color: blue;}
+        .green {background-color: green;}
+    </style>
+</head>
+<body>
+    <h3>5.DOM2 </h3>
+    
+    <h4>문서(HTML)객체 조작</h4>
+    <img src="" alt="">
+    <img src="" alt="">
+
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+
+    <ui id="korea">
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>부산</li>
+        <li>광주</li>
+    </ui>
+
+    <p class="content"></p>
+    <p class="content"></p>
+    
+    <div class="box">box1</div>
+    <div class="box green">box2</div>
+    <div class="box">box3</div>
+
+    <script>
+        // 속성 조작
+        let imgs = document.querySelectorAll("img");
+        imgs[0].src = "../img/iu01.jpg";
+        imgs[0].alt = "아이유";
+        imgs[0].width = "240";
+        imgs[0].height = "120";
+
+        imgs[1].src = "../img/iu02.jpg";
+        imgs[1].alt = "단발유";
+
+
+        // 스타일 조작
+        let box1 = document.querySelector(".box1");
+        box1.style.display = "inline-block";
+        box1.style.width = "100px";
+        box1.style.height = "100px";
+        box1.style.border = "1px solid black";
+        box1.style.background = "orange";
+
+        let box2 = document.getElementsByClassName("box2");
+        box2[0].style.display = "inline-block";
+        box2[0].style.width = "120px";
+        box2[0].style.height = "120px";
+        box2[0].style.border = "1px solid black";
+        box2[0].style.backgroundColor = "#8972ee";
+
+        // 내용 조작
+        /*
+        - innerText : 공백이 아무리 많아도 1칸만 인식해서 보여줌(trim 적용) - 일단 대기.. 지금은 별 차이 없던데 나중에 다시 확인 해봄.
+        - innerHTML : 태그를 인식함
+        - textContent : 태그 인식 안하고 textContent만 보여줌
+        */
+       
+        let korea = document.querySelector("#korea");
+        // 태그 내용의 텍스트 요소만 추출
+        let text = korea.innerText;
+        // 태그 내용의 태그 요소와 텍스트 요소 추출
+        let html = korea.innerHTML;
+
+        console.log(`text : ${text} <br/>`);
+        console.log(`html : ${html} <br/>`);
+        document.write(`text : ${text} <br />`);
+        document.write(`html : ${html} <br /><hr/>`);
+
+        let contents = document.querySelectorAll(".content");
+        // 문자열 태그 포함 모두 텍스트 요소로 추가
+        contents[0].innerText = "<em>TEXT 내용입니다.</em>";
+        // 문자열 태그는 태그 요소로 텍스트는 텍스트 요소로 추가
+        contents[1].innerHTML = "<em>HTML 내용입니다.</em>";
+        
+        // 클래스 속성 조작
+        let boxs = document.getElementsByClassName("box");
+        // classList.add(B) : B라는 값을 클래스 속성 추가
+        boxs[0].classList.add("red");
+        boxs[1].classList.remove("green");
+        // toggle() : 해당 값이 있으면 지우고, 없으면 추가
+        boxs[2].classList.toggle("blue")
+
+    </script>
+
+</body>
+</html>
