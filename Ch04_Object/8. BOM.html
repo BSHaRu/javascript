@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>8. Brower Object Model(BOM)</title>
+</head>
+<body>
+    <h3>8. 브라우저 객체 모델 </h3>
+
+    <h4>window 객체</h4>
+    <script>
+        // window 객체 - 브라우저 객체, 최상위 객체
+        window.console.log(window);
+
+        // 브라우저 크기
+        window.document.write(`innerWidth : ${window.innerWidth} <br/>`);
+        window.document.write(`innerHeight : ${window.innerHeight} <br/>`);
+        
+        // 새창 띄우기
+        window.open("./1. 객체.html", "객체 예제", "width=600 height=600");
+
+        // 브라우저 저장소 - 두 개 차이 확인하기
+        window.localStorage.setItem("name", "김유신");
+        window.sessionStorage.setItem("name", "김춘추");
+
+    </script>
+
+    <h4>screen 객체</h4>
+    <script>
+        // screen 객체 - 브라우저 운영체제 화면 객체
+        document.write(`화면 너비 : ${screen.width} <br/>`);
+        document.write(`화면 높이 : ${screen.height} <br/>`);
+        document.write(`화면 너비(작업표시줄 제외) : ${screen.availWidth} <br/>`);
+        document.write(`화면 높이(작업표시줄 제외) : ${screen.availHeight} <br/>`);
+    </script>
+
+    <h4>navigator 객체</h4>
+    <script>
+        // navivator 객체 - 브라우저 정보 객체
+        console.log(navigator);
+
+        document.write(`브라우저 코드명 : ${navigator.appCodeName} <br/>`);
+        document.write(`브라우저 이름 : ${navigator.appName} <br/>`);
+        document.write(`브라우저 버전 : ${navigator.appVersion} <br/>`);
+        document.write(`브라우저 플랫폼 : ${navigator.platform} <br/>`);
+        document.write(`브라우저 정보 : ${navigator.userAgent} <br/>`);
+
+    </script>
+
+    <h4>location 객체</h4>
+    <button onclick="f1()">새로고침</button>
+    <button onclick="f2()">네이버 이동</button>
+    <button onclick="f3()">카카오 이동</button>
+
+    <script>
+        // location 객체 - 브라우저 주소 객체
+        console.log(location);
+        
+        // 페이지 새로 고침
+        let f1 = () => location.reload();
+        
+        // 페이지 이동
+        /*
+         -href : 해당 페이지로 이동 후 뒤로가기 누르면 그대로 남아있음 
+         
+         -replace : 해당 페이지로 이동후 뒤로가기를 누르면 기록이 안남기에 페이지가 안남음 => 라이브서버로 켜서 페이지 이동하면 뒤로가기 버튼자체가 활성화가 안되네?
+        */
+        // 주소 히스토리 기록 
+        let f2 = () => location.href = "https://www.naver.com";
+
+        // 주소 히스토리 기록 x
+        let f3 = () => location.replace("https://www.daum.net");
+
+
+    </script>
+
+    <h4>history 객체</h4>
+    <button onclick="back()">뒤로</button>
+    <button onclick="forward()">앞으로</button>
+    <button onclick="go()">index 번호로 이동</button>
+
+    <script>
+        // history 객체 = 브라우저 주소 이력 객체
+        console.log(history);
+
+        document.write(`history length ${history.length} <br/>`);
+
+        let back = () => history.back();
+        let forward = () => history.forward();
+        // index 번호로 페이지 이동 가능
+        // -> go(-1) : back()이랑 동일
+        //    go(1) : forward()랑 동일
+        let go = () => history.go(1);
+
+    </script>
+
+</body>
+</html>

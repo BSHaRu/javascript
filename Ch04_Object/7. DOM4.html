@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>7. DOM4</title>
+</head>
+<body>
+    <h3>문서 객체 생성 삭제</h3>
+    
+    <section>
+        <h4>삭제할 예정입니다.</h4>
+    </section>
+   
+    <script>
+        // 어짜피 배열이니깐 받을 때 배열로 받아서 대입함
+        let section = document.getElementsByTagName("section")[0];
+
+        let pNode = document.createElement("p");
+        pNode.id = "txt";
+        pNode.innerText = "동적으로 생성한 문단태그 p 입니다.";
+        section.appendChild(pNode);
+
+        let imgNode1 = document.createElement("img");
+        imgNode1.classList.add("img1");
+        imgNode1.setAttribute("src", "../img/iu01.jpg");
+        imgNode1.setAttribute("art", "아이유");
+        section.appendChild(imgNode1);
+        
+        let imgNode2 = document.createElement("img");
+        imgNode2.classList.add("img2");
+        imgNode2.setAttribute("src", "../img/iu02.jpg");
+        imgNode2.setAttribute("art", "단발유");
+        section.insertBefore(imgNode2, imgNode1);
+
+        // let h4 = document.querySelector("h4");
+        // h4.remove();
+
+    </script>
+
+</body>
+</html>
