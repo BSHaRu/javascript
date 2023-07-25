@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>3. Ajax</title>
+
+</head>
+<body>
+    <h3>3. Ajax</h3>
+    <button id="btnData">데이터 요청</button>
+
+    <p>
+        아이디 : <span></span><br/>
+        이름 : <span></span><br/>
+        이메일 : <span></span><br/>
+        연락처 : <span></span><br/>
+    </p>
+    
+    <a href="#" id="btnUsers">users 데이터 요청</a>
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>연락처</th>
+        </tr>
+    </table>
+
+    <script>
+        const btn = document.getElementById('btnData');        
+        btn.addEventListener('click', ()=>{
+            // alert("클릭!");
+            // ajax 요청
+            // XMLHttpRequest() : 고전 방식임
+            const xhr = new XMLHttpRequest();
+            xhr.open('get', "https://jsonplaceholder.typicode.com/users");
+            xhr.send();
+
+            // 응답 처리 핸들러
+            xhr.onreadystatechange = function(){
+
+                // 요청 완료 되면 실행
+                if(xhr.readyState == XMLHttpRequest.DONE){
+                
+                    //요청 성공 하면 실행
+                    if(xhr.status == 200){
+                        const data = JSON.parse(xhr.response);
+                        console.log(data);
+
+                        const span = document.getElementsByTagName('span');
+
+                        span[0].innerText = data[0].username;
+                        span[1].innerText = data[0].name;
+                        span[2].innerText = data[0].email;
+                        span[3].innerText = data[0].phone;
+
+                    }else{
+                        console.log("요청 실패");
+                    }
+                }
+            } // xhr 핸들러 end
+        }); // btnData 이벤트 리스너 end
+
+        const aTag = document.getElementById('btnUsers');
+        aTag.addEventListener('click', (e) =>{
+            e.preventDefault();
+            alert("a태그로 이동 안합니다.");
+
+            fetch("https://jsonplaceholder.typicode.com/users")
+                // .then((response) => {
+                //     const data = response.json();
+                //     console.log(data);
+                // });
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    const table = document.getElementsByTagName('table')[0];
+                    
+                    for(let user of data){
+                        console.log(user);
+
+                        const tr = document.createElement('tr');
+                        const td1 = document.createElement('td');
+                        const td2 = document.createElement('td');
+                        const td3 = document.createElement('td');
+                        const td4 = document.createElement('td');
+
+                        td1.innerText = user.username;
+                        td2.innerText = user.name;
+                        td3.innerText = user.email;
+                        td4.innerText = user.phone;
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+
+                        table.appendChild(tr);                         
+                    } // for end
+                })
+                .catch(() => {
+                    console.log("요청 실패");
+                }); // fetch > catch end
+        }); // 이벤트 리스너 end
+    </script>
+
+</body>
+</html>
