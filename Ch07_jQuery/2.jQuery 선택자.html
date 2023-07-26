@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>2. jQuery 선택자</title>
+
+</head>
+<body>
+    <h3>2. jQuery 선택자</h3>
+
+    <ul>
+        <li id="seoul">서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>울산</li>
+        <li>
+            <span>부산</span>
+            <ol>
+                <li>서면</li>
+                <li>경대</li>
+                <li>해운대</li>
+                <li>남포동</li>
+            </ol>
+        </li>
+        <li class="gwangju">광주</li>
+    </ul>
+
+    <input type="text" name="uid" />
+    <input type="text" name="name" />
+
+    <script src="https://code.jquery.com/jquery-latest.min.js" />
+    <script>
+        $().ready(()=>{
+            // 전체 선택자
+            $('*').css('color', '#8972ee');
+
+            // 태그 선택자
+            $('h3').css('color','#800080');
+
+            // 클래스 선택자
+            $('.gwangju').css('color', '#467ec6');
+
+            // 아이디 선택자
+            $('#seoul').css('color', '#d8cdc9');
+
+            // 자손 선택자
+            $('ol > li').css('color', 'orange');
+
+            // 구조 선택자
+            $('ul > li:nth-child(2)').css('color','yellow');
+            $('ul > li:nth-of-type(3)').css('color', 'red');
+            // eq : index 번호
+            $('ul > li:eq(3)').css('color', 'brown');
+
+            // 속성 선택자
+            $('input[name=uid]').css('background', 'skyblue');
+            $('input[name=name]').css('background', 'lime');
+
+            // 셀프 선택자
+            $('ol > li').each(function(){
+                $(this).css('border', '1px dotted #020715');
+            });
+        });
+    </script>
+</body>
+</html>
