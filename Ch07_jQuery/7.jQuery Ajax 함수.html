@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>7.jQuery Ajax 함수</title>
+
+</head>
+<body>
+    <h3>7.jQuery Ajax 함수</h3>
+
+    <button id="btn1">데이터 요청</button>
+    <p>
+        아이디 : <span></span><br/>
+        이름 : <span></span><br/>
+        휴대폰 : <span></span><br/>
+        이메일 : <span></span><br/>
+    </p>
+
+    <button id="btn2">JSON 배열 요청</button>
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>휴대폰</th>
+            <th>이메일</th>
+        </tr>
+    </table>
+
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(function(){
+            $('#btn1').click(function(){
+                console.log("test1");
+
+                /* js 초창기 Ajax
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "https://jsonplaceholder.typicode.com/users");
+                xhr.send();
+
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == XMLHttpRequest.DONE){
+                        if(xhr.status == 200){
+                            const data = JSON.parse(xhr.response);
+                            console.log(data);
+                        }
+                    }
+                } 
+                */
+
+                // jQuery Ajax
+                $.ajax({
+                    url : "https://jsonplaceholder.typicode.com/users",
+                    type : "GET",
+                    dataType : "JSON",
+                    success : function(data){
+                        console.log(data);
+
+                        $('span:eq(0)').text(data[0].username);
+                        $('span:eq(1)').text(data[0].name);
+                        $('span:eq(2)').text(data[0].phone);
+                        $('span:eq(3)').text(data[0].email);
+                    },
+                    error : function(e){
+                        console.log(e);
+                    }
+                }); // btn1 ajax end
+            }); // btn1 click end
+
+            $('#btn2').click(function(){
+                console.log("btn2 test");
+                
+                $.ajax({
+                    url : "https://jsonplaceholder.typicode.com/users",
+                    type : "GET",
+                    dataType : "JSON",
+                    success : function(data){
+                        console.log(data);
+
+                        for(let user of data){
+                            let tr = "<tr>";
+                                tr +=`<td>${user.username}</td>`;
+                                tr +=`<td>${user.name}</td>`;
+                                tr +=`<td>${user.phone}</td>`;
+                                tr +=`<td>${user.email}</td>`;
+                                tr +="</tr>";
+                            
+                            $('table').append(tr);
+                        }
+                    }
+                });
+
+            }); // btn2 click end
+        });
+    </script>
+
+</body>
+</html>
